@@ -35,6 +35,10 @@ const story = [
   require('../image/z5701067703791_e2580c4fb41db51c62be0cd2cce7029e.jpg'),
   require('../image/z5707012305723_8c4ec3cb479dcf36cb01d2835ac74a4a.jpg'),
   require('../image/z5707012728522_cb91cc85da0fe500ce044700d505179d.jpg'),
+  require('../image/z5740520455485_d5616d31bfc4963f9c8c45fd5ef9ab0e.jpg'),
+  require('../image/z5753889133242_f5e4633c38f68d8019f6420a1131053f.jpg'),
+  require('../image/z5740574857280_7fce6059210aed77b6f929c41b873fae.jpg'),
+  require('../image/z5754153072849_e3876cd42eaa7a373f6d408ad7c8c353.jpg'),
 ]
 
 export default story;
