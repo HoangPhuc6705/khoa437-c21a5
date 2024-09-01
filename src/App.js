@@ -1,6 +1,8 @@
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer'
 import './App.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExpand } from '@fortawesome/free-solid-svg-icons';
 import "@fontsource/inter";
 import "@fontsource/lora"
 import "@fontsource/poppins"
@@ -24,7 +26,10 @@ function App() {
   const [show, setShow] = useState(false);
   const [showImage, setShowImage] = useState(false);
   const [image, setImage] = useState();
-  const [isDone, setIsDone] = useState(true)
+  const [isDone, setIsDone] = useState(true);
+  const [isMobile, setIsMobile] = useState();
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [landscape, setLandscape] = useState();
 
   function handleShowOptions() {
     setShow(!show);
@@ -36,6 +41,56 @@ function App() {
 
   function getImage(image) {
     setImage(image);
+  }
+
+  function handleIsMobile() {
+    const userAgent = navigator.userAgent || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      return true;
+    }
+
+    if (/iPhone|iPad|iPod/i.test(userAgent)) {
+      return true;
+    }
+
+    if (/windows phone/i.test(userAgent)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  function openFullscreen(element) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+      setIsFullScreen(true);
+    } else if (element.mozRequestFullScreen) { // Firefox
+      element.mozRequestFullScreen();
+      setIsFullScreen(true);
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari và Opera
+      element.webkitRequestFullscreen();
+      setIsFullScreen(true);
+    } else if (element.msRequestFullscreen) { // IE/Edge
+      element.msRequestFullscreen();
+      setIsFullScreen(true);
+    }
+  }
+
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari và Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+  }
+
+  function isLandscape() {
+    return window.matchMedia("(orientation: landscape)").matches;
   }
 
   useEffect(() => {
@@ -54,12 +109,45 @@ function App() {
       window.addEventListener('load', handleIsDone);
     }
 
+    if (handleIsMobile()) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+
     return () => window.removeEventListener('load', handleIsDone);
   }, []);
+
+  useEffect(() => {
+    if (isLandscape()) {
+      setLandscape(true);
+    } else {
+      setLandscape(false);
+    }
+    console.log(landscape)
+  }, [landscape]);
 
   if (isDone) {
     return (
       <div className='loading_page'>Chờ xíu nhe mấy ní...</div>
+    )
+  }
+
+  if (isMobile && (!isFullScreen || !landscape)) {
+    return (
+      <div className='setting'>
+        <div
+          className='icon'
+          onClick={() => openFullscreen(document.documentElement)}>
+          <div>
+            <FontAwesomeIcon icon={faExpand} />
+          </div>
+          <span>Toàn màn hình</span>
+        </div>
+        <span>
+          Hãy quay ngang điện thoại và bật chế độ toàn màn hình để có những trải nghiệm tốt nhất
+        </span>
+      </div>
     )
   }
 
