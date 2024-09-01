@@ -1,0 +1,12 @@
+.container2 {
+  height: 100vh;
+  position: relative;
+  background: url(../image/introducce_image.jpg);
+  background-color: #00000073;
+  background-blend-mode: darken;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition-property: all;
+  transition: .5s;
+}

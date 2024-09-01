@@ -1,0 +1,49 @@
+@keyframes rotate_pattern {
+  0% {
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(-720deg);
+  }
+}
+
+@keyframes rotate_pattern_in {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes letter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes text_up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes step_text {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,185 @@
+:root {
+  --white: #e4e4e4;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  background: #1e201e url(../image/VietNam.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 20% 10%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.top_overlay {
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(180deg, #1e201e, #1e201e00);
+  position: absolute;
+  top: 0;
+}
+
+.bottom_overlay {
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(180deg, #1e201e00, #1e201e);
+  position: absolute;
+  bottom: 0;
+}
+
+.container .panel {
+  width: 100%;
+  height: 100%;
+  color: var(--white);
+}
+
+.container .left_panel {
+  display: grid;
+  place-items: center;
+  padding: 0 4em 0 4em;
+}
+
+.left_panel .content {
+  width: 100%;
+  font-family: 'Lora', serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  transform: translateY(2em);
+}
+
+.basic_info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  position: relative;
+  gap: 2em;
+}
+
+.content .basic_info .info {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.basic_info .info {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+}
+
+.basic_info .info .icon {
+  font-size: 1.5em;
+}
+
+.content .content_main p span {
+  opacity: 0;
+}
+
+.line_info {
+  width: 1px;
+  height: 100%;
+  background: var(--white);
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+.icon {
+  font-size: 2em;
+}
+
+.container .right_panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.right_panel img {
+  width: 20%;
+  border-radius: 10px;
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pattern {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
+
+.pattern img {
+  /* animation: rotate_pattern_in 1s ease-out forwards; */
+  user-select: none;
+  will-change: transform;
+}
+
+@keyframes rotate_pattern {
+  0% {
+    transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes rotate_pattern_in {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+
+/* responesive */
+@media screen and (max-width: 1024px) {
+  .content_main {
+    font-size: 0.7em;
+  }
+
+  .basic_info .info span {
+    font-size: 60%;
+  }
+
+  .basic_info .info .icon {
+    font-size: 1em;    
+  }
+
+  .content .basic_info .info {
+    gap: 0.5em;
+  }
+
+  .icon {
+    font-size: 100%;
+  }
+
+  .left_panel .content {
+    gap: 1em;
+  }
+
+  .pattern {
+    transform: translate(65%, -50%);
+  }
+
+  .pattern img {
+    width: 70%;
+  }
+}

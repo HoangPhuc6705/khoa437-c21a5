@@ -1,0 +1,57 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  backdrop-filter: blur(20px);
+  background: #000000a6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 201;
+}
+
+.container .close {
+  position: absolute;
+  top: 1em;
+  right: 2em;
+  font-size: 2em;
+  color: #e4e4e4;
+  cursor: pointer;
+}
+
+.container img {
+  object-fit: contain;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+  user-select: none;
+  z-index: 202;
+}
+
+.container .overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+}
+
+@keyframes fade_in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade_out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
