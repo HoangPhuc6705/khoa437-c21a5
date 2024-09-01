@@ -29,7 +29,7 @@ function App() {
   const [isDone, setIsDone] = useState(true);
   const [isMobile, setIsMobile] = useState();
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [landscape, setLandscape] = useState();
+  const [landscape, setLandscape] = useState(window.matchMedia("(orientation: landscape)").matches);
 
   function handleShowOptions() {
     setShow(!show);
@@ -89,10 +89,6 @@ function App() {
     }
   }
 
-  function isLandscape() {
-    return window.matchMedia("(orientation: landscape)").matches;
-  }
-
   useEffect(() => {
     document.body.style.overflow = show ? 'hidden' : 'auto';
     document.body.style.overflow = showImage ? 'hidden' : 'auto';
@@ -119,12 +115,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (isLandscape()) {
-      setLandscape(true);
-    } else {
-      setLandscape(false);
-    }
-    console.log(landscape)
+    const handleOrientationChange = () => {
+      setLandscape(window.matchMedia("(orientation: landscape)").matches);
+    };
+
+    const mediaQuery = window.matchMedia("(orientation: landscape)");
+    mediaQuery.addEventListener('change', handleOrientationChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleOrientationChange);
+    };
   }, [landscape]);
 
   if (isDone) {
